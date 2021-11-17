@@ -12,6 +12,7 @@ urllib3.disable_warnings()
 def prices(ref):
     price_list = []
     for x in range(1 ,6):
+# New rolex's on Chrono24 with box and papers
         url = 'https://www.chrono24.com/search/index.htm?currencyId=USD&dosearch=true&facets=condition&facets=specials&facets=usedOrNew&facets=availability&maxAgeInDays=0&pageSize=120&query=Rolex+{}&redirectToSearchIndex=true&resultview=block&searchexplain=1&showpage={}&sortorder=0&specials=102&usedOrNew=new'.format \
             (ref ,x)
         response = requests.get(url=url, verify=False)
@@ -31,7 +32,7 @@ def prices(ref):
     print(f'{ref} Recorded {len(data)} Observations \r\n')
     return data
 
-
+#prices for submariners, gmt master, oyster perpetual 41, and explorer
 def run():
     sub = pd.DataFrame(prices('126610LN'))
     gmt = pd.DataFrame(prices('126710BLRO'))
