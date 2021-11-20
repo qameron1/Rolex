@@ -7,7 +7,7 @@ import re
 
 urllib3.disable_warnings()
 
-
+# List of each authorized dealer in the united stated 
 def ads():
     data = pd.DataFrame()
     url = 'https://www.rolex.com/rolex-dealers/unitedstates.html#mode=list&placeId=ChIJCzYy5IS16lQRQrfeQ5K5Oxw'
@@ -19,7 +19,7 @@ def ads():
     data['Full_Address'] = address_table
     data.rename(columns={0:'Name'}, inplace=True)
     data.sort_values('Name', ascending=True, inplace=True)
-
+# By region and location in the united states localities
     data['Full_Address'] = data['Full_Address'].apply(lambda x: x.text[:-13])
     data['Full_Address'] = data['Full_Address'].apply(lambda x: re.sub(r"(\w)([A-Z])", r"\1, \2", x))
     data['Full_Address'] = data['Full_Address'].str.split(',')
@@ -41,7 +41,7 @@ def ads():
     data = data[['Name', 'Address', 'City', 'State', 'Zip', 'ID']]
     data.to_csv(f'AD_List/Rolex_AD_List_{datetime.date.today().month}_{datetime.date.today().year}.csv', index=False)
 
-
+# amount of rolex authorized dealers outstanding
 def adcount():
     file = open('AD_Count/AD_Count.txt', 'a')
     url = 'https://www.rolex.com/rolex-dealers/unitedstates.html#mode=list&placeId=ChIJCzYy5IS16lQRQrfeQ5K5Oxw'
