@@ -10,7 +10,7 @@ class Rolex:
         self.auth = requests.auth.HTTPBasicAuth(self.personal, self.secret)
         # here we pass our login method (password), username, and password
         self.data = {'grant_type': 'password',
-            'username': '',
+            'login': '',
             'password': ''}
         # setup our header info, which gives reddit a brief description of our app
         self.headers = {'User-Agent': 'MyBot/0.0.1'}
